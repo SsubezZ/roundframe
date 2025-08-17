@@ -1,6 +1,7 @@
 # RoundFrame
 
-A GTK-based application that creates rounded screen frames for multiple monitors using GTK Layer Shell.
+A GTK-based application that creates rounded screen frames for multiple monitors using GTK Layer Shell, with configuration via a config.ini file and CSS styling.
+
 <img width="1920" height="1080" alt="frame_light" src="https://github.com/user-attachments/assets/a3dae921-c29b-4b8c-99dd-271856f7b2e4" />
 <img width="1920" height="1080" alt="frame_dark" src="https://github.com/user-attachments/assets/aeecf071-fbbd-4b04-aced-cfe0bf837982" />
 
@@ -13,23 +14,43 @@ A GTK-based application that creates rounded screen frames for multiple monitors
 
 ## Build Instructions
 
-```
-git clone https://github.com/SsubezZ/roundframe.git
-make
-./roundframe
-```
+1. Install dependencies (`gtk3 gtk-layer-shell cairo glib`).
+2. Clone the repo `git clone https://github.com/SsubezZ/roundframe.git`.
+3. Run `make` to build the project.
+4. Run `./roundframe` to execute the application.
 
 ## Usage
 
 ```
-./roundframe [options]
+roundframe [OPTIONS]
+Options:
+  -l, --log    Enable logging
+  -h, --help   Show this help message
+
 ```
 
-Options:
+Configuration is read from `~/.config/roundframe/config.ini`. Example:
 
-- `-r, --radius <N>`: Corner radius (default: 12)
-- `-g, --gap <GAP>`: Gap from screen edges (1 or 4 values: top right bottom left)
-- `-b, --border <N>`: Border width (default: 0)
-- `-a, --alpha <ALPHA>`: Alpha values (1 or 2 values: [light] [dark])
-- `-l, --layer <TYPE>`: Layer type: top, overlay, bottom, background (default: bottom)
-- `--log`: Enable debug logging
+```ini
+[Layer]
+type=BOTTOM
+name=roundframe
+keyboard_mode=none
+
+[Layout]
+gap_left=5
+gap_right=5
+gap_top=5
+gap_bottom=5
+inner_radius=12.0
+exclusive=false
+```
+
+CSS styling is read from `~/.config/roundframe/style.css`. Example:
+
+```css
+.roundframe {
+  background-color: @theme_bg_color;
+  border: 2px solid @theme_fg_color;
+}
+```
