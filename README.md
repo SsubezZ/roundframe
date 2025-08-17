@@ -2,8 +2,8 @@
 
 A GTK-based application that creates rounded screen frames for multiple monitors using GTK Layer Shell, with configuration via a config.ini file and CSS styling.
 
-<img width="1920" height="1080" alt="frame_light" src="https://github.com/user-attachments/assets/a3dae921-c29b-4b8c-99dd-271856f7b2e4" />
-<img width="1920" height="1080" alt="frame_dark" src="https://github.com/user-attachments/assets/aeecf071-fbbd-4b04-aced-cfe0bf837982" />
+<img width="1920" height="1080" alt="frame_light" src="https://github.com/user-attachments/assets/f39d2bc2-9180-4f95-b2d4-c9c98d5e0f9c" />
+<img width="1920" height="1080" alt="frame_dark" src="https://github.com/user-attachments/assets/c1de54dc-978c-48e5-a895-780f4631a242" />
 
 ## Prerequisites
 
