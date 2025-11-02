@@ -1,19 +1,17 @@
 CC = gcc
-CFLAGS = -Isrc/include `pkg-config --cflags gtk+-3.0 gtk-layer-shell-0 cairo gio-2.0`
-LDFLAGS = `pkg-config --libs gtk+-3.0 gtk-layer-shell-0 cairo gio-2.0`
-SOURCES = src/main.c src/config.c src/logging.c src/window.c src/drawing.c src/lockfile.c
-OBJECTS = $(SOURCES:.c=.o)
-EXECUTABLE = roundframe
+CFLAGS = -Wall -g `pkg-config --cflags gtk+-3.0 gtk-layer-shell-0`
+LDFLAGS = `pkg-config --libs gtk+-3.0 gtk-layer-shell-0`
+SRC_DIR = src
+OBJ = $(patsubst $(SRC_DIR)/%.c, $(SRC_DIR)/%.o, $(wildcard $(SRC_DIR)/*.c))
+TARGET = roundframe
 
-all: $(EXECUTABLE)
+all: $(TARGET)
 
-$(EXECUTABLE): $(OBJECTS)
-	$(CC) $(OBJECTS) -o $@ $(LDFLAGS)
+$(TARGET): $(OBJ)
+	$(CC) -o $@ $^ $(LDFLAGS)
 
-%.o: %.c
+$(SRC_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJECTS) $(EXECUTABLE)
-
-.PHONY: all clean
+	rm -f $(OBJ) $(TARGET)
