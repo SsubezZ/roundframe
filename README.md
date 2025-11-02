@@ -21,36 +21,99 @@ A GTK-based application that creates rounded screen frames for multiple monitors
 
 ## Usage
 
-```
-roundframe [OPTIONS]
-Options:
-  -l, --log    Enable logging
-  -h, --help   Show this help message
+### Start
 
 ```
+roundframe
+
+```
+
+### Reload
+
+```
+killall -USR1 roundframe
+```
+
+## Config
 
 Configuration is read from `~/.config/roundframe/config.ini`. Example:
 
 ```ini
-[Layer]
-type=BOTTOM
+[frame]
 name=roundframe
-keyboard_mode=none
+unique_names=true
+layer=top
+monitors=
 
-[Layout]
-gap_left=5
-gap_right=5
-gap_top=5
-gap_bottom=5
-inner_radius=12.0
+[top]
+thickness=0
+exclusive=true
+
+[bottom]
+thickness=4
+exclusive=true
+
+[left]
+thickness=4
+exclusive=true
+
+[right]
+thickness=4
+exclusive=true
+
+[top-left]
+radius=12
+exclusive=false
+
+[top-right]
+radius=12
+exclusive=false
+
+[bottom-left]
+radius=12
+exclusive=false
+
+[bottom-right]
+radius=12
 exclusive=false
 ```
 
-CSS styling is read from `~/.config/roundframe/style.css`. Example:
+GtkCSS styling is read from `~/.config/roundframe/style.css`. Example:
 
 ```css
-.roundframe {
-  background-color: @theme_bg_color;
-  border: 2px solid @theme_fg_color;
+* {
+  transition: all 0.5s ease;
+}
+
+.top {
+  background: alpha(@theme_bg_color, 0.75);
+}
+
+.bottom {
+  background: alpha(@theme_bg_color, 0.75);
+}
+
+.left {
+  background: alpha(@theme_bg_color, 0.75);
+}
+
+.right {
+  background: alpha(@theme_bg_color, 0.75);
+}
+
+.top-left {
+  background: alpha(@theme_bg_color, 0.75);
+}
+
+.top-right {
+  background: alpha(@theme_bg_color, 0.75);
+}
+
+.bottom-left {
+  background: alpha(@theme_bg_color, 0.75);
+}
+
+.bottom-right {
+  background: alpha(@theme_bg_color, 0.75);
 }
 ```
