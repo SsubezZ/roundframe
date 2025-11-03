@@ -62,39 +62,41 @@ void create_edge_window(GtkApplication *app, const EdgeWindowConfig *cfg,
   int margin_bottom = cfg->margin_bottom;
   int margin_left = cfg->margin_left;
   int margin_right = cfg->margin_right;
-  switch (cfg->edge) {
-  case GTK_LAYER_SHELL_EDGE_TOP:
-    if (cfg->thickness > 0) {
-      margin_left += (quad_cfgs[0].radius > 0 ? quad_cfgs[0].radius : 0);
-      margin_right += (quad_cfgs[1].radius > 0 ? quad_cfgs[1].radius : 0);
+  if (g_unique_names) {
+    switch (cfg->edge) {
+      case GTK_LAYER_SHELL_EDGE_TOP:
+        if (cfg->thickness > 0) {
+          margin_left += (quad_cfgs[0].radius > 0 ? quad_cfgs[0].radius : 0);
+          margin_right += (quad_cfgs[1].radius > 0 ? quad_cfgs[1].radius : 0);
+        }
+        break;
+      case GTK_LAYER_SHELL_EDGE_BOTTOM:
+        if (cfg->thickness > 0) {
+          margin_left += (quad_cfgs[2].radius > 0 ? quad_cfgs[2].radius : 0);
+          margin_right += (quad_cfgs[3].radius > 0 ? quad_cfgs[3].radius : 0);
+        }
+        break;
+      case GTK_LAYER_SHELL_EDGE_LEFT:
+        if (cfg->thickness > 0) {
+          margin_top += (quad_cfgs[0].radius > 0 ? quad_cfgs[0].radius : 0) +
+            (edge_cfgs[0].thickness > 0 ? edge_cfgs[0].thickness : 0);
+          margin_bottom +=
+            (quad_cfgs[2].radius > 0 ? quad_cfgs[2].radius : 0) +
+            (edge_cfgs[1].thickness > 0 ? edge_cfgs[1].thickness : 0);
+        }
+        break;
+      case GTK_LAYER_SHELL_EDGE_RIGHT:
+        if (cfg->thickness > 0) {
+          margin_top += (quad_cfgs[1].radius > 0 ? quad_cfgs[1].radius : 0) +
+            (edge_cfgs[0].thickness > 0 ? edge_cfgs[0].thickness : 0);
+          margin_bottom +=
+            (quad_cfgs[3].radius > 0 ? quad_cfgs[3].radius : 0) +
+            (edge_cfgs[1].thickness > 0 ? edge_cfgs[1].thickness : 0);
+        }
+        break;
+      default:
+        break;
     }
-    break;
-  case GTK_LAYER_SHELL_EDGE_BOTTOM:
-    if (cfg->thickness > 0) {
-      margin_left += (quad_cfgs[2].radius > 0 ? quad_cfgs[2].radius : 0);
-      margin_right += (quad_cfgs[3].radius > 0 ? quad_cfgs[3].radius : 0);
-    }
-    break;
-  case GTK_LAYER_SHELL_EDGE_LEFT:
-    if (cfg->thickness > 0) {
-      margin_top += (quad_cfgs[0].radius > 0 ? quad_cfgs[0].radius : 0) +
-                    (edge_cfgs[0].thickness > 0 ? edge_cfgs[0].thickness : 0);
-      margin_bottom +=
-          (quad_cfgs[2].radius > 0 ? quad_cfgs[2].radius : 0) +
-          (edge_cfgs[1].thickness > 0 ? edge_cfgs[1].thickness : 0);
-    }
-    break;
-  case GTK_LAYER_SHELL_EDGE_RIGHT:
-    if (cfg->thickness > 0) {
-      margin_top += (quad_cfgs[1].radius > 0 ? quad_cfgs[1].radius : 0) +
-                    (edge_cfgs[0].thickness > 0 ? edge_cfgs[0].thickness : 0);
-      margin_bottom +=
-          (quad_cfgs[3].radius > 0 ? quad_cfgs[3].radius : 0) +
-          (edge_cfgs[1].thickness > 0 ? edge_cfgs[1].thickness : 0);
-    }
-    break;
-  default:
-    break;
   }
   gtk_layer_set_margin(win, GTK_LAYER_SHELL_EDGE_TOP, margin_top);
   gtk_layer_set_margin(win, GTK_LAYER_SHELL_EDGE_BOTTOM, margin_bottom);
