@@ -51,6 +51,7 @@ extern GList *quad_windows;
 /* List of monitor indices to apply the frame to (NULL for all monitors) */
 extern gint *enabled_monitors;
 extern gsize num_enabled_monitors;
+extern gboolean g_unique_names;
 
 /* Default configurations */
 extern EdgeWindowConfig *edge_cfgs;

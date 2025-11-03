@@ -108,6 +108,7 @@ void load_config(void) {
     g_clear_error(&err);
     unique_names = FALSE;
   }
+  g_unique_names = unique_names;
   gchar *base_name = NULL;
   err = NULL;
   base_name = g_key_file_get_string(kf, "frame", "name", &err);
